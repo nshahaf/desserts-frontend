@@ -1,16 +1,12 @@
 <script setup>
-
 </script>
 
 <template>
-  <section>
-  </section>
+  <section>This is the cart</section>
 </template>
 
 
 <style lang="scss" scoped>
-section{
-  
+section {
 }
-
 </style>

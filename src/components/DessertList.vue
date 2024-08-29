@@ -1,34 +1,33 @@
 <template>
-  <section>
+  <section class="list">
     <DessertPreview
       v-for="(dessert, index) in desserts"
       :key="index"
       :dessert="dessert"
+      @add-to-cart="handleAddToCart"
     />
   </section>
 </template>
 
 <script setup>
-import axios from "axios";
-import { ref, onMounted } from "vue";
 import DessertPreview from "./DessertPreview.vue";
 
-const desserts = ref([]);
+const props = defineProps(["desserts"]);
 
-onMounted(async () => {
-  try {
-    const response = await axios.get(`http://localhost:3000/desserts`);
-    desserts.value = response.data;
-  } catch (error) {
-    console.error(error);
-  }
-});
+const emit = defineEmits(["add-to-cart"]);
+
+function handleAddToCart(dessert) {
+  emit("add-to-cart", dessert);
+}
 </script>
 
 
 
 
 <style lang="scss" scoped>
-section {
+section.list {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  gap: 30px 30px;
 }
 </style>

@@ -21,13 +21,15 @@ import DessertList from "./components/DessertList.vue";
 import { onMounted, ref } from "vue";
 import { useCartStore } from "@/stores/cart.js";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 //data source
 const desserts = ref([]);
 const store = useCartStore();
 
 onMounted(async () => {
   try {
-    const response = await fetch(`api/desserts`);
+    const response = await fetch(`${apiUrl}/desserts`);
 
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 

@@ -32,7 +32,6 @@ export const useCartStore = defineStore("cart", () => {
   }
 
   function $reset() {
-    console.log("reset");
     for (let i = 0; i < cartItems.length; i++) {
       cartItems[i].qty = 0;
     }

@@ -1,1 +1,2 @@
-# vue project - desserts - frontend
+# vue project
+desserts shopping cart (frontend)

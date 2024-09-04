@@ -27,7 +27,7 @@ const store = useCartStore();
 
 onMounted(async () => {
   try {
-    const response = await fetch(`http://localhost:3000/desserts`);
+    const response = await fetch(`api/desserts`);
 
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 

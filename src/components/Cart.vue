@@ -1,6 +1,6 @@
 <template>
   <section class="cart">
-    <h1>Your cart({{ store.totalitemsInCart }})</h1>
+    <h1>Your cart({{ store.totalItemsInCart }})</h1>
     <div class="empty" v-if="store.cartItems.length === 0">
       <IconEmptyCart />
       <h4>Your added items will apear here</h4>

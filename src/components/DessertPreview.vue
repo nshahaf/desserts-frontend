@@ -2,7 +2,7 @@
   <section v-if="dessert" class="preview">
     <div class="img-container">
       <img :src="imgSrc" alt="Dessert Image" />
-      <button @click="addToCart">
+      <button @click="store.add(dessert)">
         <iconAddToCart /> <span>Add to Cart</span>
       </button>
     </div>
@@ -21,24 +21,17 @@
 
 <script setup>
 import iconAddToCart from "@/assets/icons/icon-add-to-cart.vue";
-import { computed, defineProps, defineEmits } from "vue";
-const props = defineProps(["dessert"]);
-const emit = defineEmits(["add-to-cart"]);
+import { computed, defineProps } from "vue";
+import { useCartStore } from "@/stores/cart.js";
 
-// Define emits
-const addToCart = () => {
-  emit("add-to-cart", props.dessert);
-};
+const props = defineProps(["dessert"]);
+const store = useCartStore();
 
 // Computed property for image URL
 const imgSrc = computed(() => {
   return props.dessert?.image?.desktop || "";
 });
 </script>
-
-
-
-
 
 <style lang="scss" scoped>
 section.preview {

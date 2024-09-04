@@ -2,14 +2,13 @@
   <section class="app-container">
     <main>
       <h1>Desserts</h1>
-      <DessertList :desserts="desserts" @add-to-cart="handleAddToCart" />
+      <DessertList :desserts="desserts" />
       <aside>
-        <Cart :items="cartItems" @remove-item="handleRemove" />
+        <Cart />
       </aside>
     </main>
-
-    <!-- <CartModal /> -->
   </section>
+  <CartModal v-if="store.showCartModal" />
 </template>
 
 <script setup>
@@ -19,30 +18,12 @@ import DessertList from "./components/DessertList.vue";
 
 import axios from "axios";
 import { onMounted, ref } from "vue";
+import { useCartStore } from "@/stores/cart.js";
 
 //data source
 const desserts = ref([]);
-const showCartModal = ref(false);
-const cartItems = ref([]);
+const store = useCartStore();
 
-//functions
-
-function handleAddToCart(dessert) {
-  const dessertToAdd = { ...dessert };
-  dessertToAdd.id = makeRandomId();
-  cartItems.value.push(dessertToAdd);
-}
-
-function handleRemove(dessertId) {
-  console.log("remove");
-  cartItems.value = cartItems.value.filter((item) => item.id !== dessertId);
-}
-
-function makeRandomId() {
-  return Math.floor(Math.random() * 10000000);
-}
-
-//lifecycle hooks
 onMounted(async () => {
   try {
     const response = await axios.get(`http://localhost:3000/desserts`);
@@ -56,6 +37,7 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .app-container {
+  position: relative;
   background-color: $bgColor;
   height: 100%;
   padding: 90px 110px;

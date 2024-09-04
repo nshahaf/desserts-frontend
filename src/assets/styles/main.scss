@@ -13,9 +13,14 @@ body {
   grid-template-columns: 1fr $desktop-width 1fr;
   overflow-x: hidden;
   height: 100%;
+  position: relative;
 
   & > * {
     grid-column: 2;
+  }
+
+  & section.modal-container {
+    position: absolute;
   }
 }
 

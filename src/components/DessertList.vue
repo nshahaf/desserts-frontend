@@ -4,7 +4,6 @@
       v-for="(dessert, index) in desserts"
       :key="index"
       :dessert="dessert"
-      @add-to-cart="handleAddToCart"
     />
   </section>
 </template>
@@ -13,12 +12,6 @@
 import DessertPreview from "./DessertPreview.vue";
 
 const props = defineProps(["desserts"]);
-
-const emit = defineEmits(["add-to-cart"]);
-
-function handleAddToCart(dessert) {
-  emit("add-to-cart", dessert);
-}
 </script>
 
 
